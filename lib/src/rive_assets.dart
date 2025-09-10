@@ -1,26 +1,12 @@
 import 'package:rive/rive.dart';
 
-class RiveUtil {
-  static StateMachineController getRiveController(
-    Artboard artboard, {
-    String stateMachineName = 'State Machine 1',
-  }) {
-    final controller =
-        StateMachineController.fromArtboard(artboard, stateMachineName);
-    artboard.addController(controller!);
-    return controller;
-  }
-}
-
-///[RiveAsset] class contains all the parameters required to successfully render
-///rive animated icons
+/// [RiveAsset] class contains all the parameters required to successfully render rive animated icons
 class RiveAsset {
   RiveAsset({
     required this.src,
     required this.artboard,
     required this.title,
     this.stateMachineName,
-    this.input,
     this.shapeFillTitle,
     this.shapeStrokeTitle,
   });
@@ -30,12 +16,11 @@ class RiveAsset {
   final String? shapeFillTitle;
   final String? shapeStrokeTitle;
   final String? stateMachineName;
-  late SMIBool? input;
-  late SMINumber? numberInput;
+}
 
-  set setInput(SMIBool status) {
-    input = status;
-  }
+/// Helper to load a Rive File using new API
+Future<File?> loadRiveFile(String assetPath) async {
+  return File.asset(assetPath, riveFactory: Factory.rive);
 }
 
 ///The [Asset] class provides access to all the available icon's file paths

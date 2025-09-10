@@ -86,30 +86,21 @@ class _RiveAnimatedIconState extends State<RiveAnimatedIcon> {
         splashFactory: widget.splashFactory,
         mouseCursor: widget.mouseCursor,
         onTap: () {
-          if (icon.input != null) {
-            icon.input!.change(true);
-            Future.delayed(const Duration(seconds: 1), () {
-              if (mounted && icon.input != null) {
-                icon.input!.change(false);
-              }
-            });
-          }
+          // To trigger state machine inputs, use controller.stateMachine.trigger('active') in RiveIconWidget
           widget.onTap?.call();
         },
         onHover: (value) {
-          if (icon.input != null) {
-            icon.input!.change(value);
-            if (value) {
-              Future.delayed(const Duration(seconds: 1), () {
-                if (mounted && icon.input != null) {
-                  icon.input!.change(false);
-                }
-              });
-            }
-          }
+          // To trigger state machine inputs, use controller.stateMachine.trigger('active') in RiveIconWidget
           widget.onHover?.call(value);
         },
-        child: RiveIconWidget(widget: widget, icon: icon),
+        child: RiveIconWidget(
+          height: widget.height ?? 20,
+          width: widget.width ?? 20,
+          icon: icon,
+          color: widget.color,
+          strokeWidth: widget.strokeWidth,
+          loopAnimation: widget.loopAnimation,
+        ),
       ),
     );
   }
