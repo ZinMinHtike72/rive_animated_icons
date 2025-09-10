@@ -25,7 +25,7 @@ if (flutterVersionName == null) {
 android {
     namespace "com.example.rive_animated_icons"
     compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion "29.0.14033849"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
